@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elegant Earrings - Kanha Fashion Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .bg-black {
+        background-color: #000000;
+      }
+      .text-yellow {
+        color: #ffd700;
+      }
+      .button-style {
+        background-color: #000000;
+        color: #ffd700;
+        border: 2px solid #ffd700;
+        transition: all 0.3s ease;
+      }
+      .button-style:hover {
+        background-color: #ffd700;
+        color: #000000;
+      }
+      .box-hover:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body class="bg-black text-yellow min-h-screen">
+    <header class="p-6 text-center">
+      <h1 class="text-3xl sm:text-4xl font-bold">Elegant Earrings</h1>
+      <p class="text-yellow mt-2">
+        "Add sparkle to your style with our elegant earrings."
+      </p>
+    </header>
+    <!-- View Cart Button -->
+    <div class="fixed top-4 right-4">
+      <a
+        href="./add-to-cart.html"
+        class="bg-black text-yellow-500 px-4 py-2 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 shadow-lg"
+      >
+        View Cart
+      </a>
+    </div>
+    <main
+      class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      id="earrings-section"
+    >
+      <!-- Earrings Items will be dynamically generated here -->
+    </main>
+
+    <script>
+      const earringsSection = document.getElementById("earrings-section");
+
+      // Manually defined prices for each earring
+      const prices = [
+        500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700,
+        1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900,
+        3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100,
+        4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000,
+      ];
+
+      for (let i = 1; i <= 50; i++) {
+        const price = prices[i - 1]; // Get the price for the current product
+
+        const earringDiv = document.createElement("div");
+        earringDiv.className =
+          "bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 p-4 rounded-lg shadow-lg border border-yellow-500 max-w-xs w-full mx-auto hover:shadow-2xl transition-shadow duration-300 box-hover";
+
+        earringDiv.innerHTML = `
+          <img
+            src="earring${i}.jpg"
+            alt="Elegant Earring ${i}"
+            class="w-full h-40 object-contain rounded-lg shadow-md"
+          />
+          <p class="text-black text-base font-semibold mt-2">
+            Price: ₹${price}
+          </p>
+          <div class="mt-4 flex flex-col items-center">
+            <button
+              onclick="buyNow('Elegant Earring ${i}', ${price}, 'earring${i}.jpg')"
+              class="button-style px-3 py-2 rounded-lg font-semibold mb-2 w-full"
+            >
+              Buy Now
+            </button>
+            <button
+              onclick="addToCart('Elegant Earring ${i}', ${price}, 'earring${i}.jpg')"
+              class="button-style px-3 py-2 rounded-lg font-semibold w-full"
+            >
+              Add to Cart
+            </button>
+          </div>
+        `;
+
+        earringsSection.appendChild(earringDiv);
+      }
+
+      // Function to handle "Buy Now" button
+      function buyNow(name, price, image) {
+        window.location.href = `buy-now.html?name=${encodeURIComponent(
+          name
+        )}&price=${price}&image=${encodeURIComponent(image)}`;
+      }
+
+      // Function to handle "Add to Cart" button
+      function addToCart(name, price, image) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ name, price, image });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("Item added to cart!");
+      }
+    </script>
+  </body>
+</html>

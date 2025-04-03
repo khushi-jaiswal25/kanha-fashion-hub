@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation - Kanha Fashion Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .bg-black {
+        background-color: #000000;
+      }
+      .text-yellow {
+        color: #ffd700;
+      }
+      .button-style {
+        background-color: #000000;
+        color: #ffd700;
+        border: 2px solid #ffd700;
+        transition: all 0.3s ease;
+      }
+      .button-style:hover {
+        background-color: #ffd700;
+        color: #000000;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-black text-yellow min-h-screen flex flex-col items-center justify-center"
+  >
+    <header class="p-6 text-center">
+      <h1 class="text-4xl font-bold">Order Confirmed</h1>
+    </header>
+    <main class="p-6 text-center">
+      <p class="text-yellow text-lg font-semibold mb-4">
+        Thank you for shopping with Kanha Fashion Hub!
+      </p>
+      <p class="text-yellow text-lg font-semibold mb-4">
+        Your order has been successfully placed.
+      </p>
+      <p class="text-yellow text-lg font-semibold mb-4">
+        You will receive a confirmation email shortly.
+      </p>
+      <button
+        onclick="goToHomePage()"
+        class="button-style px-4 py-2 rounded-lg font-semibold mt-6"
+      >
+        Back to Home
+      </button>
+    </main>
+    <script>
+      function goToHomePage() {
+        // Redirect to the homepage
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
