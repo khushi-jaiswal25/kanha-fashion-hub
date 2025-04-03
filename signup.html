@@ -95,30 +95,17 @@
       </p>
     </div>
 
-    <script>
-      // Simulate sign-up process
-      function handleSignUp(event) {
-        event.preventDefault(); // Prevent form submission
+   <script>
+  function handleSignUp(event) {
+    event.preventDefault(); // Prevent form submission
 
-        // Get form values
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const confirmPassword =
-          document.getElementById("confirmPassword").value;
+    // Simulate sign-up success
+    const name = document.getElementById("name").value;
+    alert(`Welcome, ${name}! Your account has been created.`);
 
-        // Validate passwords
-        if (password !== confirmPassword) {
-          alert("Passwords do not match!");
-          return;
-        }
-
-        // Simulate sign-up success
-        alert(`Welcome, ${name}! Your account has been created.`);
-
-        // Redirect to login page
-        window.location.href = "./login.html";
-      }
-    </script>
+    // Redirect to login page
+    window.location.href = "./login.html";
+  }
+</script>
   </body>
 </html>
