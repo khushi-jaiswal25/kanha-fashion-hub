@@ -67,60 +67,74 @@
       class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4"
     ></section>
 
-    <script>
-      // Static product data
-      const products = [
-        {
-          name: "Luxury Necklace",
-          description: "Elegant gold necklace for special occasions.",
-          image: "./necklace.jpg",
-          file: "necklace.html",
-        },
-        {
-          name: "Designer Bangles",
-          description: "Add a touch of tradition with a sparkle of elegance.",
-          image: "./bangles.jpg",
-          file: "bangles.html",
-        },
-        {
-          name: "Elegant Earrings",
-          description: "Exquisite earrings to complement your style.",
-          image: "./earrings.jpg",
-          file: "earrings.html",
-        },
-        {
-          name: "Stylish Bags",
-          description: "Carry elegance with our collection of stylish bags.",
-          image: "./bags.jpg",
-          file: "bags.html",
-        },
-      ];
+   <script>
+  // Static product data
+  const products = [
+    {
+      name: "Luxury Necklace",
+      description: "Elegant gold necklace for special occasions.",
+      image: "./necklace.jpg",
+      file: "necklace.html",
+    },
+    {
+      name: "Designer Bangles",
+      description: "Add a touch of tradition with a sparkle of elegance.",
+      image: "./bangles.jpg",
+      file: "bangles.html",
+    },
+    {
+      name: "Elegant Earrings",
+      description: "Exquisite earrings to complement your style.",
+      image: "./earrings.jpg",
+      file: "earrings.html",
+    },
+    {
+      name: "Stylish Bags",
+      description: "Carry elegance with our collection of stylish bags.",
+      image: "./bags.jpg",
+      file: "bags.html",
+    },
+  ];
 
-      // Dynamically generate product cards
-      const productList = document.getElementById("product-list");
+  // Dynamically generate product cards
+  const productList = document.getElementById("product-list");
 
-      products.forEach((product) => {
-        const productCard = document.createElement("a"); // Create an anchor tag for the product card
-        productCard.href = product.file; // Link to the respective product page
-        productCard.className =
-          "bg-black p-3 rounded-lg shadow-md text-center border border-yellow-500 hover:shadow-lg active:shadow-xl transition-shadow duration-300 block";
-        productCard.innerHTML = `
-          <h2
-            class="text-base sm:text-lg font-semibold text-yellow-500 hover:text-yellow-400 active:text-yellow-300"
-          >
-            ${product.name}
-          </h2>
-          <p class="text-yellow-300 mt-1 text-xs sm:text-sm">
-            ${product.description}
-          </p>
-          <img
-            src="${product.image}"
-            alt="${product.name}"
-            class="w-full h-32 sm:h-40 object-contain shadow-md mt-2"
-          />
-        `;
-        productList.appendChild(productCard);
-      });
-    </script>
+  products.forEach((product) => {
+    const productCard = document.createElement("a");
+    productCard.href = "#"; // Default to prevent navigation if not logged in
+    productCard.className =
+      "bg-black p-3 rounded-lg shadow-md text-center border border-yellow-500 hover:shadow-lg active:shadow-xl transition-shadow duration-300 block";
+    productCard.innerHTML = `
+      <h2
+        class="text-base sm:text-lg font-semibold text-yellow-500 hover:text-yellow-400 active:text-yellow-300"
+      >
+        ${product.name}
+      </h2>
+      <p class="text-yellow-300 mt-1 text-xs sm:text-sm">
+        ${product.description}
+      </p>
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+        class="w-full h-32 sm:h-40 object-contain shadow-md mt-2"
+      />
+    `;
+
+    // Add click event to check login status
+    productCard.addEventListener("click", (event) => {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      if (isLoggedIn === "true") {
+        // Redirect to the product page if logged in
+        window.location.href = product.file;
+      } else {
+        // Redirect to login page if not logged in
+        alert("You must log in to view this product!");
+        window.location.href = "./login.html";
+      }
+    });
+
+    productList.appendChild(productCard);
+  });
+</script>
   </body>
 </html>
