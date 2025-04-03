@@ -112,5 +112,38 @@
         alert("Item added to cart!");
       }
     </script>
+    <script>
+  // Check if the user is logged in before allowing them to buy a product
+  function buyNow(productName, price, image) {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+      // Proceed to the buy now page
+      window.location.href = `buy-now.html?name=${encodeURIComponent(
+        productName
+      )}&price=${price}&image=${encodeURIComponent(image)}`;
+    } else {
+      // Redirect to login page
+      alert("You must log in to buy this product!");
+      window.location.href = "./login.html";
+    }
+  }
+
+  function addToCart(productName, price, image) {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+      // Add the product to the cart
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name: productName, price, image });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Product added to cart!");
+    } else {
+      // Redirect to login page
+      alert("You must log in to add this product to your cart!");
+      window.location.href = "./login.html";
+    }
+  }
+</script>
   </body>
 </html>
